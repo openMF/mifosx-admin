@@ -14,12 +14,23 @@ public class BaseService implements IBaseService {
 	IBaseDAO dao;
 
 	@Override
-	public List<Tenant> fetchTenantDetails() {
+	public List<Tenant> getTenantDetails() {
 		List<Tenant> tenants = dao.retrieveTenants();
-		for (Tenant tenant : tenants) {
-			dao.enrichTenantDetails(tenant);
-		}
+		// also get key statistics associated with each Tenant
+		dao.appendTenantStatistics(tenants);
 		return tenants;
+	}
+
+	@Override
+	public Tenant createTenant(Tenant tenant) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tenant deleteTenant(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

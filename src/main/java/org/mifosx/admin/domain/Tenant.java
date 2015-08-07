@@ -1,6 +1,5 @@
 package org.mifosx.admin.domain;
 
-import java.util.Date;
 
 public class Tenant {
 
@@ -10,9 +9,21 @@ public class Tenant {
 
 	private final String name;
 
+	private final String timeZone;
+
 	private final String schemaName;
 
-	private Date lastLoginDate;
+	private TenantStatistics statistics;
+
+	public Tenant(Integer id, String identifier, String name, String timeZone,
+			String schemaName) {
+		super();
+		this.id = id;
+		this.identifier = identifier;
+		this.timeZone = timeZone;
+		this.name = name;
+		this.schemaName = schemaName;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -30,20 +41,16 @@ public class Tenant {
 		return this.schemaName;
 	}
 
-	public Date getLastLoginDate() {
-		return this.lastLoginDate;
+	public TenantStatistics getStatistics() {
+		return this.statistics;
 	}
 
-	public void setLastLoginDate(Date lastLoginDate) {
-		this.lastLoginDate = lastLoginDate;
+	public void setStatistics(TenantStatistics statistics) {
+		this.statistics = statistics;
 	}
 
-	public Tenant(Integer id, String identifier, String name, String schemaName) {
-		super();
-		this.id = id;
-		this.identifier = identifier;
-		this.name = name;
-		this.schemaName = schemaName;
+	public String getTimeZone() {
+		return this.timeZone;
 	}
 
 }
