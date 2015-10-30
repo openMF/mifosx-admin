@@ -30,6 +30,7 @@ public class BaseDAO implements IBaseDAO {
 		}
 	}
 
+
 	@Override
 	public List<Tenant> retrieveTenants() {
 		String fetchTenantsSQL = "t.select id, name, identifier, timezone_id, t.schema_name from tenants,tenant_server_connections t where t.id=tenants.id";
