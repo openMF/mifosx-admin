@@ -40,7 +40,7 @@ public class BaseDAO implements IBaseDAO {
 
 	@Override
 	public Tenant retrieveTenant(Integer id) {
-		String fetchTenantsSQL = "select id, name, identifier, timezone_id, schema_name from tenants where id = ?";
+		String fetchTenantsSQL = "select t.id, name, identifier, timezone_id, t.schema_name from tenants,tenant_server_connections t where tenants.id = ? and tenants.id=t.id";
 		Tenant tenant = jdbcTemplate.queryForObject(fetchTenantsSQL,
 				new Object[] { id }, new TenantMapper());
 		return tenant;
@@ -134,7 +134,7 @@ public class BaseDAO implements IBaseDAO {
 
 	@Override
 	public void deleteTenant(Integer id) {
-		this.jdbcTemplate.update("delete from tenants where id = ?", id);
+		this.jdbcTemplate.update("delete from tenants,tenant_server_connections t where tenants.id = ? and tenants.id=t.id", id);
 	}
 
 	@Override
