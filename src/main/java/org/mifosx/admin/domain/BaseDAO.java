@@ -32,7 +32,7 @@ public class BaseDAO implements IBaseDAO {
 
 	@Override
 	public List<Tenant> retrieveTenants() {
-		String fetchTenantsSQL = "select id, name, identifier, timezone_id, schema_name from tenants";
+		String fetchTenantsSQL = "t.select id, name, identifier, timezone_id, t.schema_name from tenants,tenant_server_connections where t.id=tenants.id";
 		List<Tenant> tenants = jdbcTemplate.query(fetchTenantsSQL,
 				new TenantMapper());
 		return tenants;
